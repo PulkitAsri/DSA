@@ -8,49 +8,66 @@ public class WA_overlapping_intervals {
 
   public int[][] merge(int[][] intervals) {
 
-    // Ideas:
-    // initiate an interval with start_i
-    // ->if(end_i >= start_i+1) keeping going
-    // else complete an interval and start again
-    // WORKS
-
     Arrays.sort(intervals, Comparator.comparingInt(a -> a[0]));
-
-    // for(int[] hh:intervals){
-    // for(int h:hh){
-    // System.out.print(h+" ");
-    // }
-    // System.out.println();
-    // }
 
     ArrayList<ArrayList<Integer>> result = new ArrayList<>();
     ArrayList<Integer> newPair = new ArrayList<>();
 
     // Initiate the first Pair
     newPair.add(intervals[0][0]);
+    int currentRangeMax = intervals[0][1];
 
     for (int i = 0; i < intervals.length - 1; i++) {
-      if (intervals[i][1] >= intervals[i + 1][0])
-        continue; // keep the interval going
-      else { // there is an overlap
+      if (currentRangeMax >= intervals[i + 1][0]) {
+        // Some KindOf Overlap
+        // Keep the interval going
 
-        // complete the interval
-        newPair.add(intervals[i][1]);
+        if (intervals[i + 1][1] < currentRangeMax) {
+          // the interval is already included
+          // eg: [1,8] already has [2,3]
+          // <---------------->
+          // <---->
+
+          // do nothing...just ignore..already included
+
+          continue;
+        } else {
+          // the range interval is expanded
+          // <------------><end>
+          // <======> OVERLAP
+          // <--------------><end>
+
+          // just shift the end
+
+          currentRangeMax = intervals[i + 1][1];
+
+        }
+      } else {
+        // there is no overlap
+        // <------>
+        // <-------->
+
+        // So finish and start a new interval
+
+        // complete the interval with current range max
+        newPair.add(currentRangeMax);
         result.add(newPair);
 
         // start a new interval
         newPair = new ArrayList<Integer>();
         newPair.add(intervals[i + 1][0]);
+        currentRangeMax = intervals[i + 1][1];
       }
     }
     // complete the last interval
-    newPair.add(intervals[intervals.length - 1][1]);
+    newPair.add(currentRangeMax);
     result.add(newPair);
 
     return convert2DListTo2DArray(result);
 
   }
 
+  // AUXIALLY FUNCTION
   public int[][] convert2DListTo2DArray(ArrayList<ArrayList<Integer>> list) {
     int[][] result = new int[list.size()][2];
     int i = 0;
