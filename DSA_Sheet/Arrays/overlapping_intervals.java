@@ -1,10 +1,10 @@
 package DSA_Sheet.Arrays;
 
-import java.util.*;
-import java.io.*;
-import java.lang.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
 
-public class WA_overlapping_intervals {
+public class overlapping_intervals {
 
   public int[][] merge(int[][] intervals) {
 
@@ -26,18 +26,18 @@ public class WA_overlapping_intervals {
           // the interval is already included
           // eg: [1,8] already has [2,3]
           // <---------------->
-          // <---->
+          // _____<---->
 
           // do nothing...just ignore..already included
-
           continue;
+
         } else {
           // the range interval is expanded
           // <------------><end>
-          // <======> OVERLAP
-          // <--------------><end>
+          // ______<======> OVERLAP
+          // ______<--------------><end>
 
-          // just shift the end
+          // ->Just shift the end
 
           currentRangeMax = intervals[i + 1][1];
 
@@ -45,15 +45,14 @@ public class WA_overlapping_intervals {
       } else {
         // there is no overlap
         // <------>
-        // <-------->
+        // ______________<-------->
 
         // So finish and start a new interval
-
-        // complete the interval with current range max
+        // -> Complete the interval with current range max
         newPair.add(currentRangeMax);
         result.add(newPair);
 
-        // start a new interval
+        // -> Start a new interval
         newPair = new ArrayList<Integer>();
         newPair.add(intervals[i + 1][0]);
         currentRangeMax = intervals[i + 1][1];
