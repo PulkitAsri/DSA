@@ -73,8 +73,6 @@ public class Trash_Bins {
           costArray[i] = bit == 1 ? 0 : Integer.MAX_VALUE;
           i++;
         }
-        // System.out.println(Arrays.toString(arr));
-        // System.out.println(Arrays.toString(costArray));
 
         // SOLUTION
 
