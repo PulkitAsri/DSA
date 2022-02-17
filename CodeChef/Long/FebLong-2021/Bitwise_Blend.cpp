@@ -39,8 +39,8 @@ void solve() {
     if(rem[1]==0){
         bool alt=checkAlternate(arr,n);
         if(alt){
-            cout<<"==>"<<0<<endl;
-        }else cout<<"==>"<<-1<<endl;
+            cout<<0<<endl;
+        }else cout<<-1<<endl;
         return;
     }
 
@@ -101,13 +101,13 @@ void solve() {
 
     //OUTPUT
     if(count1 < count2){
-        cout<<"==>"<<count1<<endl;
+        cout<<count1<<endl;
         for(int i=0; i<ans1.size(); i++){
             cout<<ans1[i].first<<" "<<ans1[i].second<<endl;
         }
             
     }else{
-        cout<<"==>"<<count2<<endl;
+        cout<<count2<<endl;
         for(int i=0; i<ans2.size(); i++){
             cout<<ans2[i].first<<" "<<ans2[i].second<<endl;
         }
