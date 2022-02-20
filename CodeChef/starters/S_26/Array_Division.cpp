@@ -72,7 +72,7 @@ void solve() {
         }
 
     ans=max(ans,curr);
-    
+
     cout<<ans<<endl;
 }
 
@@ -86,13 +86,3 @@ int32_t main() {
     }
     return 0;
 }
-
-    // vector<vector<int> > matrix(n , vector<int> (n,0));
-    // Difference Pairs MAtrix
-    // for(int i=0; i<n; i++){
-    //     for(int j=0; j<n; j++){
-    //         matrix[i][j]= abs(arr[i]-arr[j]);
-    //         // cout<<matrix[i][j]<<" ";
-    //     }
-    //     // cout<<endl;
-    // }
