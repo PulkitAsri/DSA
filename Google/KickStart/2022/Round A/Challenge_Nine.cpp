@@ -12,6 +12,8 @@ using namespace std;
 int sumOfSumOf(int n){
     
 }
+
+
 void solve()
 {
     int n;
